@@ -1,0 +1,40 @@
+
+<br>
+<%= link_to 'New Owner', owner_new_path, class: "btn btn-primary" %>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <td class="text-center" colspan="6"><h4>Owner List</h4></td>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Country</th>
+    <th class="text-center">Position</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @owners.each do |owner| %>
+    <tr>
+      <td><%= owner.name %></td>
+      <td><%= owner.country %></td>
+      <td><%= owner.position %></td>
+      <td><%= link_to "Delete", {:controller => "owner", :action => "destroy", :id => owner.id}, method: :delete, data: {confirm:'Are you sure?'} %></td>
+      <td><%= link_to "Edit", {:controller => "owner", :action => "edit", :id => owner.id}, method: :get %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</div>
+
+</div>
+
+<%= link_to 'Back', articles_path, class: "btn btn-primary" %>

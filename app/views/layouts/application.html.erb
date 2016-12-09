@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width = device-width, initial-scale = 1 ">
+  <title><%= yield(:title) %> | Mweb</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header">
+<h1>Article Store</h1>
+</div>
+
+<div class="span6 offset2">
+
+ <ul class="nav nav-pills">
+  <li class="active">
+    <%= link_to "Articles", {:controller=>"articles", :action=>"index"} %>
+  </li>
+  <li>
+    <%= link_to "Owners", {:controller=>"owner", :action=>"index"} %>
+  </li>
+ </ul>
+
+</div>
+
+
+<%= yield %>
+
+</div>
+
+</body>
+</html>

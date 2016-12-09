@@ -1,0 +1,34 @@
+<%= form_for @owner, :url =>{:controller=>:owner, :action=>:create} do |f| %>
+
+  <% if @owner.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@owner.errors.count, "error") %> prohibited this owner from being saved
+      </h2>
+      <ul>
+        <% @owner.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :country %><br>
+    <%= f.text_area :country %>
+  </p>
+
+  <p>
+    <%= f.label :position %><br>
+    <%= f.number_field :position %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
