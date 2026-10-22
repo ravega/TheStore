@@ -24,9 +24,18 @@
   <li>
     <%= link_to "Owners", {:controller=>"owner", :action=>"index"} %>
   </li>
+  <li>
+    <%= link_to "Favourites (#{favourite_list.count})", favourites_path %>
+  </li>
  </ul>
 
 </div>
+
+<% { notice: "alert-success", alert: "alert-danger" }.each do |type, css_class| %>
+  <% if flash[type].present? %>
+    <div class="alert <%= css_class %>" role="alert"><%= flash[type] %></div>
+  <% end %>
+<% end %>
 
 
 <%= yield %>

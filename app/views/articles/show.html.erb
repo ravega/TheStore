@@ -13,6 +13,19 @@
   <%= @article.owner %>
 </p>
 
+<p>
+  <% if favourite_list.include?(@article) %>
+    <%= button_to 'Remove from favourites', favourite_path(@article),
+                  method: :delete,
+                  params: { return_to: 'article' },
+                  class: "btn btn-default" %>
+  <% else %>
+    <%= button_to 'Add to favourites', favourites_path,
+                  params: { article_id: @article.id },
+                  class: "btn btn-primary" %>
+  <% end %>
+</p>
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 

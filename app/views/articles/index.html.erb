@@ -2,8 +2,10 @@
 <h1>Listing Articles:</h1>
 <%= link_to 'New Article', new_article_path %>
 <%= link_to 'List Owners', owner_path %>
+<%= form_tag favourites_path do %>
 <table border="1">
   <tr>
+    <th>Select</th>
     <th>Title</th>
     <th>Text</th>
     <th>Owner</th>
@@ -11,7 +13,16 @@
 
   <% @articles.each do |article| %>
     <tr>
-      <td><%= article.title %></td>
+      <td>
+        <%= check_box_tag 'article_ids[]', article.id, false, id: "article_ids_#{article.id}" %>
+        <%= label_tag "article_ids_#{article.id}", "Select #{article.title}", class: "sr-only" %>
+      </td>
+      <td>
+        <%= article.title %>
+        <% if favourite_list.include?(article) %>
+          <span class="label label-warning">Favourite</span>
+        <% end %>
+      </td>
       <td><%= article.text %></td>
       <td><%= article.owner %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
@@ -22,6 +33,10 @@
     </tr>
   <% end %>
 </table>
+<p>
+  <%= submit_tag 'Add selected to favourites', class: "btn btn-primary" %>
+</p>
+<% end %>
 
 
 
